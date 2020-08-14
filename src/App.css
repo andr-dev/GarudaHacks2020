@@ -1,38 +1,57 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-flow: column;
+  height: 100vh;
+  width: 100vw;
 }
 
-.App-link {
-  color: #61dafb;
+.app-navbar {
+  display: flex;
+  height: var(--navbar-height);
+  background: var(--color-bg);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-container {
+  position: relative;
+  flex-grow: 1;
+}
+
+.app-container .fade-enter {
+  opacity: 0.01;
+}
+
+.app-container .fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.app-container .fade-exit {
+  opacity: 1;
+}
+
+.app-container .fade-exit.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.app-container-tg {
+  position: relative;
+}
+
+.app-container-rs {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.app-window,
+.app-container-tg,
+.app-container-rs {
+  width: 100%;
+  height: 100%;
+}
+
+.app-window {
+  background: white;
 }
