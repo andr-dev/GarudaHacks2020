@@ -30,6 +30,8 @@ function setup() {
     if (req.hasOwnProperty("get")) {
       if (req.get == "isRecording") {
         sendResponse({ answer: recording });
+      } else if (req.get == "transcript") {
+        sendResponse({ answer: currentTranscript });
       }
     } else if (req.hasOwnProperty("post")) {
       if (req.post == "startRecording") {
@@ -44,13 +46,11 @@ function setup() {
 function startRecording() {
   console.log("GarudaHacks2020: Starting recording . . .");
 
+  currentTranscript = "";
+
   recognition.start();
 
   recognition.onresult = function (event) {
-    console.log(
-      "transcript: ",
-      event.results[event.results.length - 1][0].transcript
-    );
     currentTranscript += event.results[event.results.length - 1][0].transcript;
   }.bind(this);
 
