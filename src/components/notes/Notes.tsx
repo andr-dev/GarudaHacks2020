@@ -3,6 +3,10 @@ import React from "react";
 import "./Notes.css";
 
 class Notes extends React.Component {
+  constructor() {
+    super({}, {});
+  }
+
   render() {
     return (
       <div className="app-window">

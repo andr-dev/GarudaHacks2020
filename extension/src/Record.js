@@ -1,25 +1,8 @@
 import React, { Component } from "react";
 import { MouseEvent } from "react";
 
-import "./Record.css";
-
-import "./RecordButton";
-import RecordButton from "./RecordButton";
-
-import axios from "axios";
-
-type Props = {};
-type State = {
-  instructions: string;
-  noteTextarea: string;
-};
-
-class Record extends React.Component<Props, State> {
-  recognition: any;
-  noteTextarea: any;
-  notesList: any;
-
-  constructor(props: Props) {
+class Record extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       instructions: "first instructions",
@@ -45,7 +28,7 @@ class Record extends React.Component<Props, State> {
 
     this.recognition.continuous = true;
 
-    this.recognition.onresult = function (this: any, event: any) {
+    this.recognition.onresult = function (event) {
       console.log("here wowzers");
 
       var current = event.resultIndex;
@@ -65,7 +48,7 @@ class Record extends React.Component<Props, State> {
       }
     }.bind(this);
 
-    this.recognition.onstart = function (this: any) {
+    this.recognition.onstart = function () {
       this.setState({
         instructions:
           "Voice recognition activated. Try speaking into the microphone.",
@@ -78,12 +61,13 @@ class Record extends React.Component<Props, State> {
     //   );
     // };
 
-    this.recognition.onerror = function (this: any, event: any) {
+    this.recognition.onerror = function (event) {
       console.log(event);
       if (event.error == "no-speech") {
         this.setState({ instructions: "No speech was detected. Try again." });
       } else {
-        this.setState({ instructions: "other error" });
+        console.log(event);
+        this.setState({ instructions: event });
       }
     }.bind(this);
 
@@ -148,26 +132,8 @@ class Record extends React.Component<Props, State> {
     console.log("pause recording");
   }
 
-  saveNoteOnClick(event: MouseEvent<HTMLButtonElement>): void {
+  saveNoteOnClick(event) {
     console.log("saving note");
-  }
-
-  punctuate(text: string): string {
-    axios
-      .post("http://bark.phon.ioc.ee/punctuator", {
-        text: "hello world i am asag",
-      })
-      .then(
-        (response) => {
-          console.log(response);
-          return response;
-        },
-        (error) => {
-          console.log(error);
-          return "";
-        }
-      );
-    return "fail?";
   }
 }
 
