@@ -2,7 +2,7 @@
 
 import React from "react";
 import request from "request";
-import JsSummarize from "./js/js-summarize.js";
+import JsSummarize from "../js/js-summarize.js";
 
 class CustomButton extends React.Component {
   constructor() {

@@ -1,0 +1,17 @@
+.flexed {
+  display: flex !important;
+  align-items: center;
+}
+
+h5 {
+  padding-left: 8px;
+}
+
+.settingsButton {
+  padding: 8px !important;
+}
+
+.row .column:not(.slider) {
+  display: flex !important;
+  align-items: center !important;
+}

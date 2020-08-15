@@ -1,0 +1,15 @@
+.ui.grid {
+  margin: 0;
+}
+
+.row .column {
+  margin-top: 0 !important;
+}
+
+.row .column:not(.sixteen) {
+  margin-bottom: 0.5rem !important;
+}
+
+h5 {
+  margin-top: 0;
+}

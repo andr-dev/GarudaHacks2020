@@ -1,0 +1,15 @@
+#App-Navbar-Title {
+  margin: 0;
+  font-size: 26px;
+  flex-grow: 1;
+}
+
+.App-Navbar-Container a {
+  display: flex;
+  align-items: center;
+}
+
+.App-Navbar-Links {
+  display: flex;
+  flex-grow: 0;
+}
