@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, withRouter } from "react-router-dom";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Dashboard from "./dashboard/Dashboard";
@@ -28,6 +28,9 @@ function WindowManager({ location }) {
                 path="/noteedit/:id"
                 render={(props) => <NoteEdit {...props} />}
               />
+              <Route path="/index.html">
+                <Redirect to="/" />
+              </Route>
             </Switch>
           </section>
         </CSSTransition>

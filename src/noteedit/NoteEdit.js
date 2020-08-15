@@ -160,6 +160,31 @@ class NoteEdit extends React.Component {
   buttonDelete() {
     console.log("form delete");
     console.log(this.state);
+    chrome.storage.sync.get(
+      ["transcripts"],
+      function (result) {
+        if (result.hasOwnProperty("transcripts")) {
+          var ts = result.transcripts;
+          console.log(ts);
+          for (var i = 0; i < ts.length; i++) {
+            if (ts[i].id == this.state.id) {
+              console.log("deleting:");
+              console.log(ts[i]);
+              ts.splice(i, 1);
+              break;
+            }
+          }
+          console.log(ts);
+          chrome.storage.sync.set(
+            { transcripts: ts },
+            function () {
+              console.log("Scribr: Finished Deleting");
+              this.props.history.push("/notelist");
+            }.bind(this)
+          );
+        }
+      }.bind(this)
+    );
   }
 }
 

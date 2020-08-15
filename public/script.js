@@ -10,12 +10,17 @@ var currentTranscript = "";
 // MAIN LOGIC //
 ////////////////
 
-if (location.hostname.match("teams.microsoft")) {
+if (
+  location.hostname.match("teams.microsoft") ||
+  location.hostname.match("hangouts.google")
+) {
   console.log("Scribr enabled!");
   setupDB();
   setup();
 } else {
-  console.log("Scribr disabled! Reason: Not on microsoft.teams domain.");
+  console.log(
+    "Scribr disabled! Reason: Not on microsoft.teams or hangouts.google domain."
+  );
 }
 
 function setup() {
@@ -89,8 +94,9 @@ function setupDB() {
         {
           id: "id",
           loaded: true,
-          title: "title",
-          transcript: "transcript",
+          title: "My first note",
+          transcript:
+            "This is a template note so you can become more familiar with the program. Feel free to delete it!",
           summary: ["s1", "s2", "s3", "s4"],
         },
       ],
