@@ -15,3 +15,11 @@ h5 {
   display: flex !important;
   align-items: center !important;
 }
+
+.col-tight.col-left {
+  padding-right: 7px !important;
+}
+
+.col-tight.col-right {
+  padding-left: 7px !important;
+}

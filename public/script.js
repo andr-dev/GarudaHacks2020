@@ -11,12 +11,11 @@ var currentTranscript = "";
 ////////////////
 
 if (location.hostname.match("teams.microsoft")) {
-  console.log("GarudaHacks2020 enabled!");
+  console.log("Scribr enabled!");
+  setupDB();
   setup();
 } else {
-  console.log(
-    "GarudaHacks2020 disabled! Reason: Not on microsoft.teams domain."
-  );
+  console.log("Scribr disabled! Reason: Not on microsoft.teams domain.");
 }
 
 function setup() {
@@ -44,7 +43,7 @@ function setup() {
 }
 
 function startRecording() {
-  console.log("GarudaHacks2020: Starting recording . . .");
+  console.log("Scribr: Starting recording . . .");
 
   currentTranscript = "";
 
@@ -56,16 +55,70 @@ function startRecording() {
 
   recording = true;
 
-  console.log("GarudaHacks2020: Recording started!");
+  console.log("Scribr: Recording started!");
 }
 
 function stopRecording() {
-  console.log("GarudaHacks2020: Stopping recording . . .");
+  console.log("Scribr: Stopping recording . . .");
 
   recognition.stop();
   recording = false;
 
   console.log("final transcript: ", currentTranscript);
 
-  console.log("GarudaHacks2020: Recording stopped!");
+  console.log("Scribr: Recording stopped!");
+}
+
+function setupDB() {
+  console.log("Scribr: Setting up DB");
+  chrome.storage.sync.get(["settings"], function (result) {
+    if (result.hasOwnProperty("settings")) {
+      console.log("Scribr: Found User Settings");
+    } else {
+      console.log("Scribr: No User Settings Found");
+      initializeUserSettings();
+    }
+  });
+
+  chrome.storage.sync.set(
+    {
+      transcripts: [
+        {
+          id: "id",
+          title: "title",
+          transcript: "transcript",
+          summary: [
+            {
+              0: "s1",
+              1: "s2",
+              2: "s3",
+              3: "s4",
+            },
+          ],
+        },
+      ],
+    },
+    function () {
+      console.log("Scribr: Initialized DB");
+    }
+  );
+}
+
+function initializeUserSettings() {
+  console.log("Scribr: Initializing User Settings");
+  chrome.storage.sync.set(
+    {
+      settings: {
+        startRecordingAutomatically: true,
+        generateSummaryAfterRecording: true,
+        serviceMicrosoftTeams: true,
+        serviceGoogleHangouts: false,
+        inputVolume: 11,
+        inputMic: true,
+      },
+    },
+    function () {
+      console.log("Scribr: Initialized User Settings");
+    }
+  );
 }

@@ -5,3 +5,7 @@
 .ui.divided.list > .item {
   margin-bottom: 20px;
 }
+
+.noteList-Inner {
+  padding: 14px !important;
+}

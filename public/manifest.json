@@ -1,6 +1,6 @@
 {
-  "name": "Name",
-  "short_name": "Shortname",
+  "name": "Scribr",
+  "short_name": "Scribr",
   "description": "description",
   "version": "0.1.0",
   "manifest_version": 2,
@@ -13,6 +13,7 @@
     "activeTab",
     "contentSettings",
     "desktopCapture",
+    "storage",
     "tabCapture",
     "tabs",
     "tts"

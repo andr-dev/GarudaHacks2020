@@ -16,8 +16,8 @@ function WindowManager({ location }) {
         >
           <section className="App-Wrapper-RS">
             <Switch location={location}>
-              <Route exact path="/notelist" component={NoteList} />
-              <Route exact path="/" component={Dashboard}></Route>
+              <Route path="/notelist" component={NoteList} />
+              <Route path="/" component={Dashboard} />
             </Switch>
           </section>
         </CSSTransition>
