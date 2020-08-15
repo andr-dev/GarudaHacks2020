@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { Button, List } from "semantic-ui-react";
 
 export default function NoteListItem(props) {
-  const url = `/noteview/${props.id}`;
+  const viewUrl = `/noteview/${props.id}`;
+  const editUrl = `/noteedit/${props.id}`;
 
   var title = props.title;
 
@@ -14,9 +15,11 @@ export default function NoteListItem(props) {
   return (
     <List.Item>
       <List.Content floated="right">
-        <Link to={url}>
+        <Link to={viewUrl}>
           <Button>View</Button>
-          <Button negative>Delete</Button>
+        </Link>
+        <Link to={editUrl}>
+          <Button positive>Edit</Button>
         </Link>
       </List.Content>
       <List.Content>

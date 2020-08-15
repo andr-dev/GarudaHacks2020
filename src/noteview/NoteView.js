@@ -9,6 +9,7 @@ class NoteView extends React.Component {
     this.state = {
       note: {
         id: "",
+        loaded: false,
         title: "",
         transcript: "",
         summary: [],

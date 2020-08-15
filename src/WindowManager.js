@@ -5,6 +5,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import Dashboard from "./dashboard/Dashboard";
 import NoteList from "./notelist/NoteList";
 import NoteView from "./noteview/NoteView";
+import NoteEdit from "./noteedit/NoteEdit";
 
 function WindowManager({ location }) {
   return (
@@ -22,6 +23,10 @@ function WindowManager({ location }) {
               <Route
                 path="/noteview/:id"
                 render={(props) => <NoteView {...props} />}
+              />
+              <Route
+                path="/noteedit/:id"
+                render={(props) => <NoteEdit {...props} />}
               />
             </Switch>
           </section>

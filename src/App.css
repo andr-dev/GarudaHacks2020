@@ -79,3 +79,7 @@ body {
 .App-Window-Inner {
   padding: 14px !important;
 }
+
+.noPadding {
+  padding: 0 !important;
+}
