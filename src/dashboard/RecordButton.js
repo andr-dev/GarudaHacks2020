@@ -122,7 +122,7 @@ class RecordButton extends React.Component {
         "https://proxy.api.deepaffects.com/text/generic/api/v1/async/punctuate",
       qs: {
         apikey: "JO0TUTyJSoBoJJfnCqlzZxWrKp7KF2y6",
-        webhook: process.env.PIPEDREAM_WEBHOOK_URL,
+        webhook: "https://f8d9d4c1540033df87a7db5ccc821542.m.pipedream.net",
       },
       headers: { "Content-Type": "application/json" },
       body: {
@@ -130,11 +130,63 @@ class RecordButton extends React.Component {
       },
       json: true,
     };
-    request(options, function (error, response, body) {
-      if (error) throw new Error(error);
-      console.log(body);
-    });
+    request(
+      options,
+      function (error, response, body) {
+        if (error) throw new Error(error);
+        console.log(body);
+        chrome.storage.sync.get(
+          ["transcripts"],
+          function (result) {
+            if (result.hasOwnProperty("transcripts")) {
+              var ts = result.transcripts;
+              ts.push({
+                id: body.request_id,
+                loaded: false,
+                title: "",
+                transcript: "",
+                summary: [],
+              });
+              chrome.storage.sync.set({ transcripts: ts }, function () {
+                console.log(
+                  "Scribr: Created empty transcript with id [%s]",
+                  body.request_id
+                );
+              });
+            }
+          }.bind(this)
+        );
+        // this.startWebHookWorker();
+      }.bind(this)
+    );
   }
+
+  // startWebHookWorker() {
+  //   console.log("Scribr: Starting WebHookAPI Worker");
+  // }
+
+  // checkWebHookAPI() {
+  //   var myHeaders = new Headers();
+  //   myHeaders.append(
+  //     "Authorization",
+  //     "Bearer fbdc49f688b320e0e15fd7c5cc0c76ce"
+  //   );
+
+  //   var requestOptions = {
+  //     method: "GET",
+  //     headers: myHeaders,
+  //     redirect: "follow",
+  //   };
+
+  //   fetch(
+  //     "https://api.pipedream.com/v1/sources/dc_6RugBR/event_summaries?expand=event",
+  //     requestOptions
+  //   )
+  //     .then((response) => response.text())
+  //     .then((result) => console.log(result))
+  //     .catch((error) => console.log("error", error));
+  // }
+
   getSummary(transcript) {
     var summary = this.summarizer.summarize("Transcript #1", transcript);
     console.log("GarudaHacks2020: Summary:");

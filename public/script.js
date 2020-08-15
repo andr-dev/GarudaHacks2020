@@ -37,6 +37,9 @@ function setup() {
         startRecording();
       } else if (req.post == "stopRecording") {
         stopRecording();
+      } else if (req.post == "startBackgroundWorker") {
+        startBackgroundWorker();
+        sendResponse({ answer: "success" });
       }
     }
   });
@@ -85,16 +88,10 @@ function setupDB() {
       transcripts: [
         {
           id: "id",
+          loaded: true,
           title: "title",
           transcript: "transcript",
-          summary: [
-            {
-              0: "s1",
-              1: "s2",
-              2: "s3",
-              3: "s4",
-            },
-          ],
+          summary: ["s1", "s2", "s3", "s4"],
         },
       ],
     },
@@ -121,4 +118,47 @@ function initializeUserSettings() {
       console.log("Scribr: Initialized User Settings");
     }
   );
+}
+
+function startBackgroundWorker() {
+  console.log("Scribr: Starting Background Worker");
+  setTimeout(checkWebHookAPI, 10000);
+  console.log("Scribr: Background Worker Running");
+}
+
+function checkWebHookAPI() {
+  // var xhr = new XMLHttpRequest();
+  // xhr.onreadystatechange = function () {
+  //   if (xhr.readyState == XMLHttpRequest.DONE) {
+  //     console.log("finished api request");
+  //     console.log(xhr.responseText);
+  //   }
+  // };
+  // xhr.open(
+  //   "GET",
+  //   "https://cors-anywhere.herokuapp.com/https://api.pipedream.com/v1/sources/dc_6RugBR/event_summaries?expand=event",
+  //   true
+  // );
+  // // xhr.setRequestHeader("Origin", "https://localhost:3000");
+  // xhr.setRequestHeader(
+  //   "Authorization",
+  //   "Bearer fbdc49f688b320e0e15fd7c5cc0c76ce"
+  // );
+  // // xhr.setRequestHeader("Content-Type", "text/plain");
+  // xhr.send();
+  // setTimeout(checkWebHookAPI, 10000);
+  // var myHeaders = new Headers();
+  // myHeaders.append("Authorization", "Bearer fbdc49f688b320e0e15fd7c5cc0c76ce");
+  // var requestOptions = {
+  //   method: "GET",
+  //   headers: myHeaders,
+  //   redirect: "follow",
+  // };
+  // fetch(
+  //   "https://cors-anywhere.herokuapp.com/https://api.pipedream.com/v1/sources/dc_6RugBR/event_summaries?expand=event",
+  //   requestOptions
+  // )
+  //   .then((response) => response.text())
+  //   .then((result) => console.log(result))
+  //   .catch((error) => console.log("error", error));
 }

@@ -2,8 +2,9 @@ import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
-import NoteList from "./components/NoteList";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./dashboard/Dashboard";
+import NoteList from "./notelist/NoteList";
+import NoteView from "./noteview/NoteView";
 
 function WindowManager({ location }) {
   return (
@@ -16,8 +17,12 @@ function WindowManager({ location }) {
         >
           <section className="App-Wrapper-RS">
             <Switch location={location}>
+              <Route exact path="/" component={Dashboard} />
               <Route path="/notelist" component={NoteList} />
-              <Route path="/" component={Dashboard} />
+              <Route
+                path="/noteview/:id"
+                render={(props) => <NoteView {...props} />}
+              />
             </Switch>
           </section>
         </CSSTransition>
