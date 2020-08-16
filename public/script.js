@@ -96,8 +96,20 @@ function setupDB() {
           loaded: true,
           title: "My first note",
           transcript:
-            "This is a template note so you can become more familiar with the program. Feel free to delete it!",
+            "This is a template note so you can become more familiar with the program. The note titled 'Lesson #1: The War of 1812' is as well. Feel free to delete these!",
           summary: ["s1", "s2", "s3", "s4"],
+        },
+        {
+          id: "warof1812",
+          loaded: true,
+          title: "Lesson #1: The War of 1812",
+          transcript:
+            "The War of 1812 was a conflict fought between the United States and its allies against the United Kingdom of Great Britain and Ireland and its own allies. It began when the United States declared war in June 1812 and ended in a stalemate when a peace treaty agreed earlier was ratified by the United States in February 1815. While the war ended in a draw, both sides were happy with the outcome that saw the war ending and indigenous nations are generally seen among historians as the real losers. Historians in Britain often see it as a minor theatre of the Napoleonic Wars while historians in Canada and the United States see it as a war ...",
+          summary: [
+            "The war of 1812 was a conflict fought between the Unites States against the United Kingdom of Great Britain and Ireland.",
+            "It began in June of 1812.",
+            "Both sides were happy with the outcome.",
+          ],
         },
       ],
     },

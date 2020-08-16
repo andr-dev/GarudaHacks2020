@@ -1,8 +1,9 @@
 {
   "name": "Scribr",
   "short_name": "Scribr",
-  "description": "description",
-  "version": "0.1.0",
+  "description": "A chrome extension that allows teachers to record lectures as text transcripts. For more, go to https://github.com/andr-dev/Scribr.",
+  "author": "Andre Benedito and Souradeep Saha",
+  "version": "1.0",
   "manifest_version": 2,
   "background": {
     "scripts": ["background.js"],
@@ -21,15 +22,6 @@
   "browser_action": {
     "default_icon": "logo512.png",
     "default_popup": "index.html"
-  },
-  "commands": {
-    "enguage": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Space",
-        "mac": "Command+Shift+Space"
-      },
-      "description": "single utterance"
-    }
   },
   "icons": {
     "512": "logo512.png"
